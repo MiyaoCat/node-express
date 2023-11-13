@@ -276,6 +276,17 @@ button {
     border: 1px solid black;
     max-width: fit-content;
   }
+  .filter-menu .sportSelect label {
+    display: flex;
+    flex-direction: column;
+  }
+  .filter-menu .sportSelect .sport {
+    display: flex;
+  }
+  .filter-menu .sportSelect .filterPositions label {
+    display: flex;
+    flex-direction: row;
+  }
   .filter-menu .yearsSelect {
     display: flex;
     flex-wrap: wrap;

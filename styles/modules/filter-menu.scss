@@ -5,7 +5,7 @@
 @media(min-width: 700px) {
 	.filter-menu {
 		display: block;
-		background-color: purple;
+		background-color: grey;
 		padding: 0 $spacing-wide;
 		margin: 0 $spacing-sm;
 		min-width: 180px; 
@@ -22,17 +22,25 @@
 		.sportsOptions label, 
 		.yearsOptions label, 
 		.positionsOptions label {
-			// display: flex;
-			// margin: $spacing-st;
-			// padding: $spacing-st 0;
-			// border: 1px solid black;
-			// max-width: fit-content;
+			display: flex;
+			margin: $spacing-st;
+			padding: $spacing-st 0;
+			border: 1px solid black;
+			max-width: fit-content;
 		}
 
 		.sportSelect {
-			label[for="baskeball"] {
+			label {
 				display: flex;
 				flex-direction: column;
+			}
+			
+			.sport {
+				display: flex;
+			}
+			.filterPositions label {
+				display: flex;
+				flex-direction: row;
 			} 
 		}
 
@@ -45,13 +53,6 @@
 			label {
 				max-width: fit-content;
 			}
-		}
-
-		.sportSelect {
-			label {
-				display: flex;
-				flex-direction: column;
-			} 
 		}
 	}
 }

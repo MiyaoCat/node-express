@@ -83,15 +83,17 @@
 				<div class="sportSelect">
 					<% sportsSorted.forEach( function(sport) { %>	
 						<label for="<%=sport%>">
-							<input 								
-								type="checkbox" 
-								id="<%=sport%>"
-								data-filter="<%=sport%>"
-							/>
-							
-							<p class="normal-voice">
-								<%=capFirstLetter(sport)%> (<%=sportsCount[sport]%>)
-							</p>
+							<div class="sport">
+								<input 								
+									type="checkbox" 
+									id="<%=sport%>"
+									data-filter="<%=sport%>"
+								/>
+								
+								<p class="normal-voice">
+									<%=capFirstLetter(sport)%> (<%=sportsCount[sport]%>)
+								</p>
+							</div>
 
 							<div class="filterPositions">
 								<% positionBySport(sport).forEach( function(position) { %>
