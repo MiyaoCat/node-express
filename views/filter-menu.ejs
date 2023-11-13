@@ -60,8 +60,8 @@
 
 			<div class="sportsOptions hidden">
 				<label for="allSports" class="selectAll">
-					<input checked type="checkbox" id="allSports">
-					<p class="normal-voice">Deselect All </p>
+					<input  type="checkbox" id="allSports">
+					<p class="normal-voice">Select All </p>
 					<p class="normal-voice">(<%=athleteTotal%>)</p>
 				</label>
 
@@ -69,7 +69,7 @@
 					<% sportsSorted.forEach( function(sport) { %>	
 						<label for="<%=sport%>">
 							<input 
-								checked
+								
 								type="checkbox" 
 								id="<%=sport%>"
 								data-filter="<%=sport%>"
@@ -94,14 +94,14 @@
 			<div class="positionsOptions hidden">
 				<label for="allPositions" class="selectAll">
 					<input checked type="checkbox" id="allPositions">
-					<p class="normal-voice">Deselect All</p>
+					<p class="normal-voice">Select All</p>
 				</label>
 
 				<div class="positionsSelect">
 					<% uniquePosition.forEach( function(position) { %>
 					<label for="<%=position%>">
 						<input 
-							checked
+							
 							type="checkbox"
 							id="<%=position%>"
 							data-filter="<%=position%>"
@@ -120,14 +120,14 @@
 			<div class="yearsOptions hidden">
 				<label for="allYears" class="selectAll">
 					<input checked type="checkbox" id="allYears">
-					<p class="normal-voice">Deselect All</p>
+					<p class="normal-voice">Select All</p>
 				</label>
 
 				<div class="yearsSelect">
 					<% colSeasonsSortedRev.forEach( function(year) { %>
 					<label for="<%=year%>">
 						<input 
-							checked
+							
 							type="checkbox"
 							id="<%=year%>"
 							data-filter="<%=year%>"
