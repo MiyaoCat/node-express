@@ -15,8 +15,8 @@
 		return athlete.sport;
 	});
 	const sportsFlat = sports.flat();
-	const uniqueSport = sportsFlat.filter( function(item, i, sportsFlat) {
-		return i == sportsFlat.indexOf(item);
+	const uniqueSport = sportsFlat.filter( function(item, i, sports) {
+		return i == sports.indexOf(item);
 	})
 	const sportsSorted = uniqueSport.sort();
 
@@ -24,11 +24,25 @@
 	const positions = athletes.map( function(athlete) {
 		return athlete.position;
 	})
-
-	const uniquePosition = positions.filter( function(item, i, psoitions) {
+	const uniquePosition = positions.filter( function(item, i, positions) {
 		return i == positions.indexOf(item);
 	})
 
+	//POSITIONS BY SPORT
+	function positionBySport(sport) {
+		let selectedSport = athletes.filter( function(athlete) {
+			return athlete.sport.includes(sport);
+		})
+
+		let sportPositions = selectedSport.map( function(athlete) {
+			return athlete.position;
+		})
+
+		let positions = sportPositions.filter( function(item, i, positions) {
+			return i == positions.indexOf(item);
+		})
+		return positions;
+	}
 
 	//COUNT PLAYERS IN EACH SPORT
 	const sportsCount = {};
@@ -41,12 +55,13 @@
 	});
 
 	const athleteTotal = sports.flat().length;
-	console.log(athleteTotal)
 
 	//CAPITALIZE FIRST LETTER OF EACH SPORT
 	function capFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 	}
+
+
 %>
 
 <section class="filter-menu">
@@ -68,48 +83,33 @@
 				<div class="sportSelect">
 					<% sportsSorted.forEach( function(sport) { %>	
 						<label for="<%=sport%>">
-							<input 
-								
+							<input 								
 								type="checkbox" 
 								id="<%=sport%>"
 								data-filter="<%=sport%>"
 							/>
-								<p class="normal-voice">
-									<%=capFirstLetter(sport)%> (<%=sportsCount[sport]%>)
-								</p>
 							
+							<p class="normal-voice">
+								<%=capFirstLetter(sport)%> (<%=sportsCount[sport]%>)
+							</p>
+
+							<div class="filterPositions">
+								<% positionBySport(sport).forEach( function(position) { %>
+								<label for="<%=position%>">
+									<input 							
+										type="checkbox"
+										id="<%=position%>"
+										data-filter="<%=position%>"
+									>
+									<p class="normal-voice"><%=position%></p>
+								</label>
+								<% });%>
+							</div>	
 						</label>
 					<% });%>
 				</div>
 
 			</div>
-		</div>
-
-		<div class="filterPositions">
-			<label class="alert-voice" for="positionsFilter">
-				Position
-			</label>
-			<input type="checkbox" id="positionsFilter">
-
-			<div class="positionsOptions hidden">
-				<label for="allPositions" class="selectAll">
-					<input checked type="checkbox" id="allPositions">
-					<p class="normal-voice">Select All</p>
-				</label>
-
-				<div class="positionsSelect">
-					<% uniquePosition.forEach( function(position) { %>
-					<label for="<%=position%>">
-						<input 
-							
-							type="checkbox"
-							id="<%=position%>"
-							data-filter="<%=position%>"
-						>
-						<p class="normal-voice"><%=position%></p>
-					</label>
-					<% }); %>
-				</div>
 		</div>
 
 		<div class="filterYears">
@@ -126,8 +126,7 @@
 				<div class="yearsSelect">
 					<% colSeasonsSortedRev.forEach( function(year) { %>
 					<label for="<%=year%>">
-						<input 
-							
+						<input 							
 							type="checkbox"
 							id="<%=year%>"
 							data-filter="<%=year%>"
@@ -136,7 +135,6 @@
 					</label>
 					<% }); %>
 				</div>
-
 			</div>
 
 		</div>
