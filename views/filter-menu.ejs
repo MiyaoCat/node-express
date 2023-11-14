@@ -4,7 +4,7 @@
 		return athlete.collegeSeasons;
 	})
 	const colSeasonsFlat = collegeSeasons.flat();
-  const uniqueColSeasons = colSeasonsFlat.filter( function(item, i, colSeasonsFlat) {
+	const uniqueColSeasons = colSeasonsFlat.filter( function(item, i, colSeasonsFlat) {
   	return i == colSeasonsFlat.indexOf(item);
   })
   const colSeasonsSorted = uniqueColSeasons.sort();
@@ -41,7 +41,7 @@
 		let positions = sportPositions.filter( function(item, i, positions) {
 			return i == positions.indexOf(item);
 		})
-		return positions;
+		return positions.sort();
 	}
 
 	//COUNT PLAYERS IN EACH SPORT
@@ -83,10 +83,10 @@
 				<div class="sportSelect">
 					<% sportsSorted.forEach( function(sport) { %>	
 						<label for="<%=sport%>">
-							<div class="sport">
+							<div class="sports">
 								<input 								
 									type="checkbox" 
-									id="<%=sport%>"
+									class="sportInput"
 									data-filter="<%=sport%>"
 								/>
 								
@@ -97,14 +97,14 @@
 
 							<div class="filterPositions">
 								<% positionBySport(sport).forEach( function(position) { %>
-								<label for="<%=position%>">
-									<input 							
-										type="checkbox"
-										id="<%=position%>"
-										data-filter="<%=position%>"
-									>
-									<p class="normal-voice"><%=position%></p>
-								</label>
+									<label for="<%=position%>">
+										<input 							
+											type="checkbox"
+											id="<%=position%>"
+											data-filter="<%=position%>"
+										>
+										<p class="normal-voice"><%=position%></p>
+									</label>
 								<% });%>
 							</div>	
 						</label>
@@ -143,3 +143,29 @@
 
 	</div>
 </section>
+
+<script>
+	const $sportInput = document.querySelectorAll('.sportInput');
+	const sportValue = $sportInput.value;
+	console.log($sportInput)
+	// $sportInput.addEventListener('change', function() {
+
+	// 	console.log('sportValue');
+	// })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

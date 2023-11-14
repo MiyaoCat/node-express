@@ -48,8 +48,9 @@
 	</ul>
 </inner-column>
 
-<%- include('footer.ejs') %>
+
 <%- include('scripts/filter-menu-script.ejs') %>
+<%- include('footer.ejs') %>
 <script>
 	// - - - - FILTER BY SPORT CHECKBOX - - - - - - - - 
 	const cards = document.querySelectorAll('li[class="athlete"]');
@@ -129,7 +130,7 @@
 	})
 
 	// - - - - SORT - - - - SORT - - - - SORT - - - - - 
-	// - - - - SORT BY NAME - - - - - - - - - - - - - -
+	// - - - - SORT BY NAME & YEAR - - - - - - - - - - - - - -
 	const $sort = document.getElementById('sortBy');
 	const $names = document.querySelectorAll('.name');
 	const $athletes = document.querySelectorAll('athlete-card');

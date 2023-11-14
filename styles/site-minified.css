@@ -280,11 +280,11 @@ button {
     display: flex;
     flex-direction: column;
   }
-  .filter-menu .sportSelect .sport {
+  .filter-menu .sportSelect .sports {
     display: flex;
   }
   .filter-menu .sportSelect .filterPositions label {
-    display: flex;
+    display: none;
     flex-direction: row;
   }
   .filter-menu .yearsSelect {

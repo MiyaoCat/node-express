@@ -76,22 +76,6 @@
 		})
 	})
 
- 	// - - - - SPORT-YEAR FILTER - - - - - - - - 
-	//get the years that are displayed in the filter
-	// console.log('YEARS LABEL: ', yearsLabel);
-
-	const years = [];
-	yearsLabel.forEach(function (year) {
-    if (year.style.display === 'block') {
-    	years.push(year.getAttribute('for'));
-    }
-	});
-
-
-	//only display the cards that match the years in the filter
-
-
-
 	// - - - - FILTER BY YEAR CHECKBOX - - - - - - - - 
   function getSelectedYears() {
 	  const selectedYears = [];
@@ -117,8 +101,6 @@
 			athlete.style.display = isVisible ? 'block' : 'none';
 		})
 	}
-
-
 
 	yearsCheckboxes.forEach( function(checkbox) {
 		checkbox.addEventListener('change', function() {

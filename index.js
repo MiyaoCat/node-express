@@ -25,7 +25,7 @@ const app = express();
 //Set EJS
 app.set('view engine', 'ejs');
 
-const PORT = process.env.PORT || 2020;
+const PORT = process.env.PORT || 2023;
 app.listen(PORT, function() {
 	console.log(`server started at http://localhost:${PORT}`);
 });

@@ -2,8 +2,7 @@
 	// - - - - TOGGLE FILTERS ON/OFF - - - - - - - - 
 	const $sportsFilter = document.getElementById('sportsFilter');
 	const $sportsOptions = document.querySelector('.sportsOptions');
-	const $positionsFilter = document.getElementById('positionsFilter');
-	const $positionsOptions = document.querySelector('.positionsOptions');
+
 	const $yearsFilter = document.getElementById('yearsFilter');
 	const $yearsOptions = document.querySelector('.yearsOptions');
 
@@ -18,9 +17,7 @@
 	$sportsFilter.addEventListener('change', function() {
 		toggleFilters($sportsFilter, $sportsOptions);
 	})
-	$positionsFilter.addEventListener('change', function() {
-		toggleFilters($positionsFilter, $positionsOptions);
-	})
+
 	$yearsFilter.addEventListener('change', function() {
 		toggleFilters($yearsFilter, $yearsOptions);
 	})
