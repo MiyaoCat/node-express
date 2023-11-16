@@ -143,7 +143,12 @@
 </section>
 
 <script>
-
+	const sportsSelect = document.querySelectorAll('.sportInput');
+	sportsSelect.forEach( function(sport) {
+		sport.addEventListener('change', function(click) {
+			console.log('click')
+		})
+	})
 </script>
 
 
