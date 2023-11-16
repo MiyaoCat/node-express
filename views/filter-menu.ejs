@@ -144,9 +144,13 @@
 
 <script>
 	const sportsSelect = document.querySelectorAll('.sportInput');
+	const positions = document.querySelectorAll('.filterPositions label');
+
 	sportsSelect.forEach( function(sport) {
 		sport.addEventListener('change', function(click) {
-			console.log('click')
+			positions.forEach( function(position) {
+				position.style.display = 'block';
+			})
 		})
 	})
 </script>
