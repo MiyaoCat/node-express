@@ -60,8 +60,6 @@
 	function capFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 	}
-
-
 %>
 
 <section class="filter-menu">
@@ -75,7 +73,7 @@
 
 			<div class="sportsOptions hidden">
 				<label for="allSports" class="selectAll">
-					<input  type="checkbox" id="allSports">
+					<input type="checkbox" id="allSports">
 					<p class="normal-voice">Select All </p>
 					<p class="normal-voice">(<%=athleteTotal%>)</p>
 				</label>
@@ -145,13 +143,7 @@
 </section>
 
 <script>
-	const $sportInput = document.querySelectorAll('.sportInput');
-	const sportValue = $sportInput.value;
-	console.log($sportInput)
-	// $sportInput.addEventListener('change', function() {
 
-	// 	console.log('sportValue');
-	// })
 </script>
 
 

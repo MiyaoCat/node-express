@@ -1,4 +1,83 @@
 <script>
+		// - - - - FILTER BY SPORT CHECKBOX - - - - - - - - 
+	const cards = document.querySelectorAll('li[class="athlete"]');
+	const sportsCheckboxes = document.querySelectorAll('.sportsOptions input[type="checkbox"]');
+	// const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
+	const yearsLabel = document.querySelectorAll('.yearSelect label')
+	const visibleLabels = document.querySelectorAll('.yearSelect label[style="display:block"]');
+	
+	// const visibleYears = visibleLabels.forEach( function(label) {
+	// 	const year = label.getAttribute('for');
+	// 	return year;
+	// })
+	
+	let allUnchecked = true;
+	sportsCheckboxes.forEach( function(checkbox) {
+		if (checkbox.checked) {
+			allUnchecked = false;
+			return;
+		} 
+	})
+
+	if (allUnchecked) {
+		yearsLabel.forEach( function(label) {
+			label.style.display = 'block';
+		})	
+	}
+ 	
+ 	function getSelectedAthletes(checkboxType) {
+		const selectedItems = [];
+
+		checkboxType.forEach( function(checkbox) {
+			if (checkbox.checked) {
+				selectedItems.push(checkbox.getAttribute('data-filter'));
+			}
+		})
+		return selectedItems;
+	}
+
+	const allYears = [];
+
+	sportsCheckboxes.forEach( function(checkbox) {
+		checkbox.addEventListener('change', function() {
+			const selectedSports = getSelectedAthletes(sportsCheckboxes);
+			const allYears = [];
+
+			cards.forEach( function(card) {
+				card.style.display = 'none';
+			});
+
+			selectedSports.forEach( function(selectedSport) {
+				cards.forEach( function(card) {
+					if (card.getAttribute('data-sport') == selectedSport) {
+						card.style.display = 'block';		
+
+						const cardYears = card.getAttribute('data-year').split(',');
+						allYears.push(...cardYears);
+
+						yearsLabel.forEach( function(label) {
+							const labelYear = label.getAttribute('for');
+
+							if (allYears.includes(labelYear)) {
+								label.style.display = 'block';
+
+								yearsCheckboxes.forEach( function(checkbox) {
+									checkbox.checked = true;
+								})
+							} else {
+								label.style.display = 'none';
+								yearsCheckboxes.checked = false;
+							}
+						})
+
+					} else {
+						// label.style.display = 'none';
+					}
+				})
+			})
+		})
+	})
+
 	// - - - - TOGGLE FILTERS ON/OFF - - - - - - - - 
 	const $sportsFilter = document.getElementById('sportsFilter');
 	const $sportsOptions = document.querySelector('.sportsOptions');
@@ -40,11 +119,13 @@
 			})
 		}
 	})
-	
+
+// - - - - SHOW/HIDE POSITIONS - - - - - - - - 
+
 // - - - - SELECT/DESELECT ALL YEARS - - - - - - - - 
-	// const $allYears = document.getElementById('allYears');
-	// const selectAllYears = document.querySelector('label[for="allYears"] p');
-	// const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
+	const $allYears = document.getElementById('allYears');
+	const selectAllYears = document.querySelector('label[for="allYears"] p');
+	const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
 	
 	// $allYears.addEventListener('change', function() {
 	// 	if ($allYears.checked == false) {

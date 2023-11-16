@@ -1,0 +1,153 @@
+<script>
+		// - - - - SORT BY NAME & YEAR - - - - - - - - - - - - - -
+	const $sort = document.getElementById('sortBy');
+	const $names = document.querySelectorAll('.name');
+	const $athletes = document.querySelectorAll('athlete-card');
+
+	const fNamesArray = [];
+	const lNamesArray = [];
+
+	$names.forEach(function(nameElement) {
+		const fullName = nameElement.innerText;
+		const nameSplit = fullName.split(' ');
+		const fName = nameSplit[0];
+		const lName = nameSplit[1];	
+
+		fNamesArray.push(fName);
+		lNamesArray.push(lName);
+	})
+
+	function reorderList(sortedList, selector) {
+	  const ul = document.querySelector('.card-grid');
+	  const cards = Array.from(document.querySelectorAll('li[class="athlete"]'));
+
+	  // Append the sorted cards to the ul, skipping undefined values
+	  sortedList.forEach(function (match) {
+	    const card = cards.find(function (athlete) {
+	      return athlete.querySelector(selector).innerText.includes(match);
+	    });
+
+	    if (card) {
+	      ul.appendChild(card);
+	    }
+	  });
+	}
+
+	function reorderListNum(sortedList, selector) {
+	  const ul = document.querySelector('.card-grid');
+	  const athletes = Array.from(document.querySelectorAll('li[class="athlete"]'));
+
+	  const cardsByYear = {};
+
+	  athletes.forEach(function (athlete) {
+	    const firstYear = parseInt(athlete.querySelector(selector).innerText.split(' - ')[0]);
+
+	    if (!cardsByYear[firstYear]) {
+	      cardsByYear[firstYear] = [];
+	    }
+
+	    cardsByYear[firstYear].push(athlete);
+	    console.log('cards by year: ', cardsByYear)
+	  });
+
+	  const reorderedCards = [];
+
+	  sortedList.forEach(function (matchYear) {
+	    if (cardsByYear[matchYear]) {
+	      reorderedCards.push(...cardsByYear[matchYear]);
+	    }
+		});
+
+	  while (ul.firstChild) {
+	    ul.removeChild(ul.firstChild);
+	  }
+
+	  reorderedCards.forEach(function (card) {
+	    ul.appendChild(card);
+	  });
+	}
+
+	const years = [];
+
+	$athletes.forEach( function(athlete) {
+		const dataYears = athlete.querySelector('.years').innerText;
+		const firstYears = parseInt(dataYears.split('-')[0]);
+
+		years.push(firstYears);
+	})
+
+	console.log('YEARS: ', years)
+
+	$sort.addEventListener('change', function() {
+		selectedSort = $sort.value;
+
+		if (selectedSort == 'lastName') {
+			const sortedNames = lNamesArray.slice().sort();
+
+			reorderList(sortedNames, '.name');
+		}
+
+		if (selectedSort == 'lastNameRev') {
+			const sortedNames = lNamesArray.slice().sort();
+			const sortedRev = sortedNames.reverse();
+
+			reorderList(sortedRev, '.name');
+		}
+
+		if (selectedSort == 'yearDesc') {
+			const sortedYearsDesc = years.slice().sort( function(a, b) {
+				return b - a;
+			});	
+			reorderListNum(sortedYearsDesc, '.years');
+		}
+
+		if (selectedSort == 'yearAsc') {
+			const sortedYears = years.slice().sort( (a, b) => b - a );	
+			const sortedRev = sortedYears.reverse();
+
+			reorderListNum(sortedYears, '.years');
+		}
+	})
+
+	// - - - - FLIP BUTTON - - - - - - - - - - - -
+	const $athleteCards = document.querySelectorAll('athlete-card');
+	const $button = document.querySelectorAll('.flipper');
+
+	$button.forEach( function($button, index) {
+		let isFlipped = false;	
+		
+		$button.addEventListener('click', function(event) {
+			$athleteCards[index].classList.toggle('hovered');
+			$athleteCards[index].classList.toggle('disable-hover');
+			this.innerText = 'flip back';
+
+			if (isFlipped) {
+				this.innerText = 'Flip Card';
+			} else {
+				this.innerText = 'Flip Back';
+			}
+
+			isFlipped = !isFlipped;
+		});
+	});
+
+	// - - - - FLIP TOGGLE - - - - - - - - - - - -
+	const $flipToggle = document.getElementById('flip-toggle');
+	let flipped = false;
+	$flipToggle.addEventListener('click', function() {
+
+		$athleteCards.forEach( function(card) {
+			card.classList.toggle('disable-hover');
+		})
+
+		if (flipped) {
+				$flipToggle.innerText = 'Hover is On';
+		} else {
+				$flipToggle.innerText = 'Hover is Off';
+
+			}
+
+		flipped = !flipped;
+
+	})
+</script>
