@@ -60,6 +60,10 @@
 	function capFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 	}
+
+	//COUNT PLAYERS IN EACH POSITION
+	const positionCount = [];
+	// const countEachPos = sportsPo
 %>
 
 <section class="filter-menu">
@@ -80,7 +84,7 @@
 
 				<div class="sportSelect">
 					<% sportsSorted.forEach( function(sport) { %>	
-						<label for="<%=sport%>">
+						<label>
 							<div class="sports">
 								<input 								
 									type="checkbox" 
@@ -144,15 +148,11 @@
 
 <script>
 	const sportsSelect = document.querySelectorAll('.sportInput');
-	const positions = document.querySelectorAll('.filterPositions label');
+	const positions = document.querySelectorAll('.filterPositions');
 
-	sportsSelect.forEach( function(sport) {
-		sport.addEventListener('change', function(click) {
-			positions.forEach( function(position) {
-				position.style.display = 'block';
-			})
-		})
-	})
+	console.log('POSITIONS: ', positions)
+	console.log('SPORTS SELECT: ', sportsSelect)
+
 </script>
 
 

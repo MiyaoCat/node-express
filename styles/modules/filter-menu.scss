@@ -39,9 +39,12 @@
 				display: flex;
 			}
 			.filterPositions label {
-				display: none;
+				display: hidden;
 				flex-direction: row;
 			} 
+			.filterPositions.hidden {
+ 			   visibility: visible;
+			}
 		}
 
 		.yearsSelect {
