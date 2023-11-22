@@ -540,7 +540,9 @@ athlete-card {
   }
   .back .college[data-position=Pitcher] .stats-table td p, .back .college[data-position=Pitcher] .stats-table th p,
   .back .college[data-position=Quarterback] .stats-table td p,
-  .back .college[data-position=Quarterback] .stats-table th p {
+  .back .college[data-position=Quarterback] .stats-table th p,
+  .back .college[data-position=Wide] .stats-table td p,
+  .back .college[data-position=Wide] .stats-table th p {
     font-size: 0.61em;
   }
   .back .college p {

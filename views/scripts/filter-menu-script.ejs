@@ -106,14 +106,14 @@
 	const allSportsText = document.querySelector('label[for="allSports"] p');
 
 	// Update card visibility based on the state of checkboxes
-    function updateCardVisibility() {
-        const selectedSports = getSelectedAthletes(sportsCheckboxes);
+  function updateCardVisibility() {
+      const selectedSports = getSelectedAthletes(sportsCheckboxes);
 
-        cards.forEach(function (card) {
-            const cardSport = card.getAttribute('data-sport');
-            card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
-        });
-    }
+      cards.forEach(function (card) {
+          const cardSport = card.getAttribute('data-sport');
+          card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
+      });
+  }
     // Ensure all individual sports checkboxes are unchecked initially
     sportsCheckboxes.forEach(function (checkbox) {
         checkbox.checked = false;

@@ -243,7 +243,8 @@ athlete-card {
 		}
 
 		.college[data-position='Pitcher'], 
-		.college[data-position='Quarterback'] {
+		.college[data-position='Quarterback'],
+		.college[data-position='Wide'] {
 			.stats-table {
 				td p, th p {
 					font-size: .61em;
