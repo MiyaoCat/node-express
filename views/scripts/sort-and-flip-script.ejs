@@ -8,10 +8,7 @@
 	const lNamesArray = [];
 
 	$names.forEach(function(nameElement) {
-		const fullName = nameElement.innerText;
-		const nameSplit = fullName.split(' ');
-		const fName = nameSplit[0];
-		const lName = nameSplit[1];	
+		const [fName, lName] = nameElement.innerText.split(' ');
 
 		fNamesArray.push(fName);
 		lNamesArray.push(lName);
