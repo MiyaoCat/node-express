@@ -16,6 +16,7 @@
 		}
 
 		.hidden {
+			//turn on for filter
 			// display: none;
 		}
 
@@ -39,12 +40,12 @@
 				display: flex;
 			}
 			.filterPositions label {
-				display: hidden;
+				// display: none;
 				flex-direction: row;
 			} 
-			.filterPositions.hidden {
- 			   visibility: visible;
-			}
+			// .filterPositions.hidden {
+ 			//    visibility: visible;
+			// }
 		}
 
 		.yearsSelect {

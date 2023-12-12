@@ -285,11 +285,7 @@ button {
     display: flex;
   }
   .filter-menu .sportSelect .filterPositions label {
-    display: hidden;
     flex-direction: row;
-  }
-  .filter-menu .sportSelect .filterPositions.hidden {
-    visibility: visible;
   }
   .filter-menu .yearsSelect {
     display: flex;
