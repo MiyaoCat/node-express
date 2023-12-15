@@ -17,7 +17,7 @@
 
 		.hidden {
 			//turn on for filter
-			// display: none;
+			display: none;
 		}
 
 		.sportsOptions label, 
@@ -36,11 +36,17 @@
 				flex-direction: column;
 			}
 			
+			.sports-header {
+				display: flex;
+			}
 			.sports {
 				display: flex;
 			}
+
+			.filterPositions[data-filter='basketball'] {
+				display: none;
+			}
 			.filterPositions label {
-				// display: none;
 				flex-direction: row;
 			} 
 			// .filterPositions.hidden {

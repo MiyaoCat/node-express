@@ -96,8 +96,8 @@ function capFirstLetter(string) {
 
 				<div class="sportSelect">
 					<% sportsSorted.forEach( function(sport) { %>	
-						<label>
-							<div class="sports">
+						<label class="<%=sport%>">
+							<div class="sports-header">
 								<input 								
 									type="checkbox" 
 									class="sportInput"
@@ -109,7 +109,7 @@ function capFirstLetter(string) {
 								</p>
 							</div>
 
-							<div class="filterPositions">
+							<div class="filterPositions" data-filter="<%=sport%>">
 								<% positionBySport(sport).forEach( function(position) { %>
 									<label for="<%=position%>" data-filter='position'>
 										<input 							
@@ -117,7 +117,10 @@ function capFirstLetter(string) {
 											id="<%=position%>"
 											data-filter="<%=position%>"
 										>
-										<p class="normal-voice"><%=position%> (<%=positionsCount[position]%>)</p>
+										
+										<p class="normal-voice">
+											<%=position%> (<%=positionsCount[position]%>)
+										</p>
 									</label>
 								<% });%>
 							</div>	

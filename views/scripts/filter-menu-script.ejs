@@ -42,7 +42,7 @@
 	const $filterPositions = document.querySelectorAll('.filterPositions label');
 
 	$filterPositions.forEach(function (position) {
- 		position.style.display = 'none';
+ 		// position.style.display = 'none';
 	})
 
 	sportsCheckboxes.forEach( function(checkbox) {
@@ -59,12 +59,12 @@
 					if (card.getAttribute('data-sport') === selectedSport) {
 						card.style.display = 'block';		
 
-						if (card.getAttribute('data-position') === 'Point Guard') {
+						// if (card.getAttribute('data-position') === 'Point Guard') {
 
-							$filterPositions.forEach(function (position) {
-						 		position.style.display = 'flex';
-							})
-						}
+						// 	$filterPositions.forEach(function (position) {
+						//  		position.style.display = 'flex';
+						// 	})
+						// }
 
 						// const cardYears = card.getAttribute('data-year').split(',');
 						// allYears.push(...cardYears);
@@ -121,11 +121,24 @@
 	const $yearsFilter = document.getElementById('yearsFilter');
 	const $yearsOptions = document.querySelector('.yearsOptions');
 
+	const $filterBasketball = document.querySelector('.sportInput[data-filter="basketball"]');
+	const $positionsBasketball = document.querySelector('.filterPositions[data-filter="basketball"]');
+
+	console.log('filter pos: ', $positionsBasketball);
+	console.log('filter bball: ', $filterBasketball);
+
 	function toggleFilters(filterType, element) {
 		if (filterType.checked) {
 			element.classList.remove('hidden');
 		} else {
 			element.classList.add('hidden');
+		}
+	}
+	function toggleFiltersReverse(filterType, element) {
+		if (filterType.checked) {
+			element.style.display = 'block';
+		} else {
+			element.style.display = 'none';
 		}
 	}
 
@@ -136,7 +149,9 @@
 	$yearsFilter.addEventListener('change', function() {
 		toggleFilters($yearsFilter, $yearsOptions);
 	})
-
+	$filterBasketball.addEventListener('change', function() {
+		toggleFiltersReverse($filterBasketball, $positionsBasketball)
+	})
 // - - - - SELECT/DESELECT ALL SPORTS - - - - - - - - 
 	const $allSports = document.getElementById('allSports');
 	const allSportsText = document.querySelector('label[for="allSports"] p');
