@@ -123,8 +123,8 @@
 
 	const $filterBasketball = document.querySelector('.sportInput[data-filter="basketball"]');
 	const $positionsBasketball = document.querySelector('.filterPositions[data-filter="basketball"]');
-
-	console.log('filter pos: ', $positionsBasketball);
+	const $positionsFootball = document.querySelector('.filterPositions[data-filter="football"]');
+	console.log('filter pos: ', $filterBasketball);
 	console.log('filter bball: ', $filterBasketball);
 
 	function toggleFilters(filterType, element) {
@@ -134,7 +134,7 @@
 			element.classList.add('hidden');
 		}
 	}
-	function toggleFiltersReverse(filterType, element) {
+	function togglePositionFilter(filterType, element) {
 		if (filterType.checked) {
 			element.style.display = 'block';
 		} else {
@@ -150,7 +150,7 @@
 		toggleFilters($yearsFilter, $yearsOptions);
 	})
 	$filterBasketball.addEventListener('change', function() {
-		toggleFiltersReverse($filterBasketball, $positionsBasketball)
+		togglePositionFilter($filterBasketball, $positionsBasketball)
 	})
 // - - - - SELECT/DESELECT ALL SPORTS - - - - - - - - 
 	const $allSports = document.getElementById('allSports');
