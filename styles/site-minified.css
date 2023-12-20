@@ -290,7 +290,7 @@ button {
   .filter-menu .sportSelect .sports {
     display: flex;
   }
-  .filter-menu .sportSelect .filterPositions[data-filter=basketball] {
+  .filter-menu .sportSelect .filterPositions {
     display: none;
   }
   .filter-menu .sportSelect .filterPositions label {

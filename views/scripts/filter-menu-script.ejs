@@ -1,244 +1,271 @@
 <script>
-	// - - - - FILTER BY SPORT CHECKBOX - - - - - - - - 
-	const $cards = document.querySelectorAll('li[class="athlete"]');
-	const sportsCheckboxes = document.querySelectorAll('.sportsOptions input[type="checkbox"]');
-	const $sports = document.querySelectorAll('.sportInput');
-	// const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
-	const yearsLabel = document.querySelectorAll('.yearSelect label')
-	const visibleLabels = document.querySelectorAll('.yearSelect label[style="display:block"]');
-	const visibleYears = visibleLabels.forEach( function(label) {
-		const year = label.getAttribute('for');
-		return year;
-	})
-	
-	let allUnchecked = true;
+// - - - - FILTER BY SPORT CHECKBOX - - - - - - - - 
+const $cards = document.querySelectorAll('li[class="athlete"]');
+const sportsCheckboxes = document.querySelectorAll('.sportsOptions input[type="checkbox"]');
+const $sports = document.querySelectorAll('.sportInput');
+// const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
+const yearsLabel = document.querySelectorAll('.yearSelect label')
+const visibleLabels = document.querySelectorAll('.yearSelect label[style="display:block"]');
+const visibleYears = visibleLabels.forEach( function(label) {
+	const year = label.getAttribute('for');
+	return year;
+})
 
-	sportsCheckboxes.forEach( function(checkbox) {
+let allUnchecked = true;
+
+sportsCheckboxes.forEach( function(checkbox) {
+	if (checkbox.checked) {
+		allUnchecked = false;
+		return;
+	} 
+})
+
+if (allUnchecked) {
+	yearsLabel.forEach( function(label) {
+		label.style.display = 'block';
+	})	
+}
+	
+	function getSelectedAthletes(checkboxType) {
+	const selectedItems = [];
+
+	checkboxType.forEach( function(checkbox) {
 		if (checkbox.checked) {
-			allUnchecked = false;
-			return;
-		} 
+			selectedItems.push(checkbox.getAttribute('data-filter'));
+		}
 	})
+	return selectedItems;
+}
 
-	if (allUnchecked) {
-		yearsLabel.forEach( function(label) {
-			label.style.display = 'block';
-		})	
-	}
- 	
- 	function getSelectedAthletes(checkboxType) {
-		const selectedItems = [];
+const allYears = [];
 
-		checkboxType.forEach( function(checkbox) {
-			if (checkbox.checked) {
-				selectedItems.push(checkbox.getAttribute('data-filter'));
-			}
-		})
-		return selectedItems;
-	}
+const $filterPositions = document.querySelectorAll('.filterPositions label');
 
-	const allYears = [];
-	
-	const $filterPositions = document.querySelectorAll('.filterPositions label');
+$filterPositions.forEach(function (position) {
+		// position.style.display = 'none';
+})
 
-	$filterPositions.forEach(function (position) {
- 		// position.style.display = 'none';
-	})
+sportsCheckboxes.forEach( function(checkbox) {
+	checkbox.addEventListener('change', function() {
+		const selectedSports = getSelectedAthletes(sportsCheckboxes);
+		const allYears = [];
 
-	sportsCheckboxes.forEach( function(checkbox) {
-		checkbox.addEventListener('change', function() {
-			const selectedSports = getSelectedAthletes(sportsCheckboxes);
-			const allYears = [];
+		$cards.forEach( function(card) {
+			card.style.display = 'none';
+		});
 
+		selectedSports.forEach( function(selectedSport) {
 			$cards.forEach( function(card) {
-				card.style.display = 'none';
-			});
+				if (card.getAttribute('data-sport') === selectedSport) {
+					card.style.display = 'block';		
 
-			selectedSports.forEach( function(selectedSport) {
-				$cards.forEach( function(card) {
-					if (card.getAttribute('data-sport') === selectedSport) {
-						card.style.display = 'block';		
+					// if (card.getAttribute('data-position') === 'Point Guard') {
 
-						// if (card.getAttribute('data-position') === 'Point Guard') {
+					// 	$filterPositions.forEach(function (position) {
+					//  		position.style.display = 'flex';
+					// 	})
+					// }
 
-						// 	$filterPositions.forEach(function (position) {
-						//  		position.style.display = 'flex';
-						// 	})
-						// }
+					// const cardYears = card.getAttribute('data-year').split(',');
+					// allYears.push(...cardYears);
 
-						// const cardYears = card.getAttribute('data-year').split(',');
-						// allYears.push(...cardYears);
+					// yearsLabel.forEach( function(label) {
+					// 	const labelYear = label.getAttribute('for');
 
-						// yearsLabel.forEach( function(label) {
-						// 	const labelYear = label.getAttribute('for');
+					// 	if (allYears.includes(labelYear)) {
+					// 		label.style.display = 'block';
 
-						// 	if (allYears.includes(labelYear)) {
-						// 		label.style.display = 'block';
+					// 		yearsCheckboxes.forEach( function(checkbox) {
+					// 			checkbox.checked = true;
+					// 		})
+					// 	} else {
+					// 		label.style.display = 'none';
+					// 		yearsCheckboxes.checked = false;
+					// 	}
+					// })
 
-						// 		yearsCheckboxes.forEach( function(checkbox) {
-						// 			checkbox.checked = true;
-						// 		})
-						// 	} else {
-						// 		label.style.display = 'none';
-						// 		yearsCheckboxes.checked = false;
-						// 	}
-						// })
-
-					// } else {
-						// label.style.display = 'none';
-					}
-				})
+				// } else {
+					// label.style.display = 'none';
+				}
 			})
 		})
 	})
+})
 
-	// - - - - FILTER BY SPORT POSITION - - - - - - - - 
-	const $positions = document.querySelectorAll('label[data-filter="position"]');
-	const positionCheckboxes = document.querySelectorAll('.filterPositions input');
+// - - - - FILTER BY SPORT POSITION - - - - - - - - 
+const $positions = document.querySelectorAll('label[data-filter="position"]');
+const positionCheckboxes = document.querySelectorAll('.filterPositions input');
 
-	$positions.forEach( function(position) {
-		position.addEventListener('change', function() {
-			const selectedPositions = getSelectedAthletes(positionCheckboxes);
+$positions.forEach( function(position) {
+	position.addEventListener('change', function() {
+		const selectedPositions = getSelectedAthletes(positionCheckboxes);
 
+		$cards.forEach( function(card) {
+			card.style.display = 'none';
+		});
+
+		selectedPositions.forEach( function(selectedPosition) {
 			$cards.forEach( function(card) {
-				card.style.display = 'none';
-			});
-
-			selectedPositions.forEach( function(selectedPosition) {
-				$cards.forEach( function(card) {
-					if (card.getAttribute('data-position') == selectedPosition) {
-						card.style.display = 'block';	
-					}
-				})
+				if (card.getAttribute('data-position') == selectedPosition) {
+					card.style.display = 'block';	
+				}
 			})
-
 		})
+
 	})
-	// - - - - TOGGLE FILTERS ON/OFF - - - - - - - - 
-	const $sportsFilter = document.getElementById('sportsFilter');
-	const $sportsOptions = document.querySelector('.sportsOptions');
+})
+// - - - - TOGGLE FILTERS ON/OFF - - - - - - - - 
+const $sportsFilter = document.getElementById('sportsFilter');
+const $sportsOptions = document.querySelector('.sportsOptions');
 
-	const $yearsFilter = document.getElementById('yearsFilter');
-	const $yearsOptions = document.querySelector('.yearsOptions');
+const $yearsFilter = document.getElementById('yearsFilter');
+const $yearsOptions = document.querySelector('.yearsOptions');
 
-	const $filterBasketball = document.querySelector('.sportInput[data-filter="basketball"]');
-	const $positionsBasketball = document.querySelector('.filterPositions[data-filter="basketball"]');
-	const $positionsFootball = document.querySelector('.filterPositions[data-filter="football"]');
-	console.log('filter pos: ', $filterBasketball);
-	console.log('filter bball: ', $filterBasketball);
+let sportValue = null;
 
-	function toggleFilters(filterType, element) {
-		if (filterType.checked) {
-			element.classList.remove('hidden');
-		} else {
-			element.classList.add('hidden');
-		}
+const $filterBasketball = document.querySelector('.sportInput[data-filter="basketball"]');
+const $positionsBasketball = document.querySelector('.filterPositions[data-filter="basketball"]');
+
+
+const $filterSport = document.querySelectorAll(`.sportInput`);
+const $sportPosition = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
+
+const $sportInputs = document.querySelectorAll('.sportInput');
+
+$sportInputs.forEach( function(sport) {
+	const sportValue = sport.value;
+	const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
+
+	sport.addEventListener('change', function() {
+		togglePositionFilter(sport, positionsValue);
+	})
+})
+
+$sportInputs.forEach(function (sport) {
+  sport.addEventListener('change', function() {
+  	if(sport.checked) {
+  		sportValue = sport.value;
+  		console.log(sportValue);
+  	}
+  })
+});
+
+
+
+function toggleFilters(filterType, element) {
+	if (filterType.checked) {
+		element.classList.remove('hidden');
+	} else {
+		element.classList.add('hidden');
 	}
-	function togglePositionFilter(filterType, element) {
-		if (filterType.checked) {
-			element.style.display = 'block';
-		} else {
-			element.style.display = 'none';
-		}
+}
+function togglePositionFilter(filterType, element) {
+	if (filterType.checked) {
+		element.style.display = 'block';
+	} else {
+		element.style.display = 'none';
 	}
+}
 
-	$sportsFilter.addEventListener('change', function() {
-		toggleFilters($sportsFilter, $sportsOptions);
-	})
+$sportsFilter.addEventListener('change', function() {
+	toggleFilters($sportsFilter, $sportsOptions);
+})
 
-	$yearsFilter.addEventListener('change', function() {
-		toggleFilters($yearsFilter, $yearsOptions);
-	})
-	$filterBasketball.addEventListener('change', function() {
-		togglePositionFilter($filterBasketball, $positionsBasketball)
-	})
+$yearsFilter.addEventListener('change', function() {
+	toggleFilters($yearsFilter, $yearsOptions);
+})
+
+$filterBasketball.addEventListener('change', function() {
+	togglePositionFilter($filterBasketball, $positionsBasketball)
+})
+
 // - - - - SELECT/DESELECT ALL SPORTS - - - - - - - - 
-	const $allSports = document.getElementById('allSports');
-	const allSportsText = document.querySelector('label[for="allSports"] p');
+const $allSports = document.getElementById('allSports');
+const allSportsText = document.querySelector('label[for="allSports"] p');
 
-	// Update card visibility based on the state of checkboxes
-  function updateCardVisibility() {
-      const selectedSports = getSelectedAthletes(sportsCheckboxes);
+// Update card visibility based on the state of checkboxes
+function updateCardVisibility() {
+    const selectedSports = getSelectedAthletes(sportsCheckboxes);
 
-      $cards.forEach(function (card) {
-          const cardSport = card.getAttribute('data-sport');
-          card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
-      });
-  }
-    // Ensure all individual sports checkboxes are unchecked initially
-    sportsCheckboxes.forEach(function (checkbox) {
-        checkbox.checked = false;
-   });
+    $cards.forEach(function (card) {
+        const cardSport = card.getAttribute('data-sport');
+        card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
+    });
+}
+  // Ensure all individual sports checkboxes are unchecked initially
+  sportsCheckboxes.forEach(function (checkbox) {
+      checkbox.checked = false;
+ });
 
-   $allSports.addEventListener('change', function () {
-        if ($allSports.checked) {
-            // If 'AllSports' is checked, check all individual sports checkboxes
-            sportsCheckboxes.forEach(function (checkbox) {
-                checkbox.checked = true;
-                allSportsText.innerText = 'Deselect All';
-            });
-        } else {
-            // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
-            sportsCheckboxes.forEach(function (checkbox) {
-                checkbox.checked = false;
-                allSportsText.innerText = 'Select All';
-            });
-        }
+ $allSports.addEventListener('change', function () {
+      if ($allSports.checked) {
+          // If 'AllSports' is checked, check all individual sports checkboxes
+          sportsCheckboxes.forEach(function (checkbox) {
+              checkbox.checked = true;
+              allSportsText.innerText = 'Deselect All';
+          });
+      } else {
+          // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
+          sportsCheckboxes.forEach(function (checkbox) {
+              checkbox.checked = false;
+              allSportsText.innerText = 'Select All';
+          });
+      }
 
-        // Update the logic for showing/hiding cards
-        updateCardVisibility();
-   });
+      // Update the logic for showing/hiding cards
+      updateCardVisibility();
+ });
 
 // - - - - SELECT/DESELECT ALL POSITIONS - - - - - - - -     
-	// const $sports = document.querySelectorAll('.sportsInput');
-	// const $filterPositions = document.querySelectorAll('.filterPositions label');
+// const $sports = document.querySelectorAll('.sportsInput');
+// const $filterPositions = document.querySelectorAll('.filterPositions label');
 
-	// $filterPositions.forEach(function (position) {
- 	// 	position.style.display = 'none';
+// $filterPositions.forEach(function (position) {
+	// 	position.style.display = 'none';
+// })
+
+// $sports.forEach(function (sport) {
+// 	sport.addEventListener('change', function() {
+	// 		if (sport.checked) {
+	// 			$filterPositions.forEach(function (position) {
+	// 				position.style.display = 'flex';
+	// 			})
+	// 		} else {
+	// 			$filterPositions.forEach(function (position) {
+	// 				position.style.display = 'none';
+	// 			})
+	// 		}
+	// 	})	
 	// })
-
-	// $sports.forEach(function (sport) {
-	// 	sport.addEventListener('change', function() {
- 	// 		if (sport.checked) {
- 	// 			$filterPositions.forEach(function (position) {
- 	// 				position.style.display = 'flex';
- 	// 			})
- 	// 		} else {
- 	// 			$filterPositions.forEach(function (position) {
- 	// 				position.style.display = 'none';
- 	// 			})
- 	// 		}
- 	// 	})	
- 	// })
-   
+ 
 //If sport is unchecked
-   //check the stats of the sport checkbox
+ //check the stats of the sport checkbox
 
 //Then uncheck positions with that sport
 
 // - - - - SHOW/HIDE POSITIONS - - - - - - - - 
 
 // - - - - SELECT/DESELECT ALL YEARS - - - - - - - - 
-	const $allYears = document.getElementById('allYears');
-	const selectAllYears = document.querySelector('label[for="allYears"] p');
-	const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
-	
-	// $allYears.addEventListener('change', function() {
-	// 	if ($allYears.checked == false) {
-	// 		yearsCheckboxes.forEach( function(checkbox) {
-	// 			checkbox.checked = false;
+const $allYears = document.getElementById('allYears');
+const selectAllYears = document.querySelector('label[for="allYears"] p');
+const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
 
-	// 			cards.forEach( function(card) {
-	// 				card.style.display = 'none';
-	// 			});
-	// 			selectAllYears.innerText = 'Select All';
-	// 		})
-	// 	} else {
-	// 		yearsCheckboxes.forEach( function(checkbox) {
-	// 			checkbox.checked = true;
-	// 			selectAllYears.innerText = 'Deselect All';
-	// 		})
-	// 	}
-	// })
+// $allYears.addEventListener('change', function() {
+// 	if ($allYears.checked == false) {
+// 		yearsCheckboxes.forEach( function(checkbox) {
+// 			checkbox.checked = false;
+
+// 			cards.forEach( function(card) {
+// 				card.style.display = 'none';
+// 			});
+// 			selectAllYears.innerText = 'Select All';
+// 		})
+// 	} else {
+// 		yearsCheckboxes.forEach( function(checkbox) {
+// 			checkbox.checked = true;
+// 			selectAllYears.innerText = 'Deselect All';
+// 		})
+// 	}
+// })
 
 </script>
