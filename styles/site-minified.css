@@ -268,9 +268,6 @@ button {
     display: flex;
     flex-direction: column;
   }
-  .filter-menu .hidden {
-    display: none;
-  }
   .filter-menu .sportsOptions label,
   .filter-menu .yearsOptions label,
   .filter-menu .positionsOptions label {
@@ -280,9 +277,11 @@ button {
     border: 1px solid black;
     max-width: fit-content;
   }
+  .filter-menu .sportSelect {
+    display: none;
+  }
   .filter-menu .sportSelect label {
     display: flex;
-    flex-direction: column;
   }
   .filter-menu .sportSelect .sports-header {
     display: flex;
@@ -297,7 +296,7 @@ button {
     flex-direction: row;
   }
   .filter-menu .yearsSelect {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     max-width: 180px;
   }

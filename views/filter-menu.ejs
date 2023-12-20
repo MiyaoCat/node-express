@@ -87,14 +87,16 @@ function capFirstLetter(string) {
 			<label class="alert-voice" for="sportsFilter">Sport</label>
 			<input type="checkbox" id="sportsFilter">
 
-			<div class="sportsOptions hidden">
-				<label for="allSports" class="selectAll">
-					<input type="checkbox" id="allSports">
-					<p class="normal-voice">Select All </p>
-					<p class="normal-voice">(<%=athleteTotal%>)</p>
-				</label>
+			<div class="sportsOptions">
+				
 
 				<div class="sportSelect">
+					<label for="allSports" class="selectAll">
+						<input type="checkbox" id="allSports">
+						<p class="normal-voice">Select All </p>
+						<p class="normal-voice">(<%=athleteTotal%>)</p>
+					</label>
+
 					<% sportsSorted.forEach( function(sport) { %>	
 						<label class="<%=sport%>">
 							<div class="sports-header">
@@ -124,7 +126,8 @@ function capFirstLetter(string) {
 										</p>
 									</label>
 								<% });%>
-							</div>	
+							</div>
+								
 						</label>
 					<% });%>
 				</div>
@@ -137,13 +140,13 @@ function capFirstLetter(string) {
 			<label class="alert-voice" for="yearsFilter">Years</label>
 			<input type="checkbox" id="yearsFilter">
 
-			<div class="yearsOptions hidden">
-				<label for="allYears" class="selectAll">
-					<input checked type="checkbox" id="allYears">
-					<p class="normal-voice">Select All</p>
-				</label>
-
+			<div class="yearsOptions">
 				<div class="yearsSelect">
+					<label for="allYears" class="selectAll">
+						<input checked type="checkbox" id="allYears">
+						<p class="normal-voice">Select All</p>
+					</label>
+
 					<% colSeasonsSortedRev.forEach( function(year) { %>
 					<label for="<%=year%>">
 						<input 							

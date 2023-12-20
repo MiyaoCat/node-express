@@ -15,11 +15,6 @@
 			flex-direction: column;
 		}
 
-		.hidden {
-			//turn on for filter
-			display: none;
-		}
-
 		.sportsOptions label, 
 		.yearsOptions label, 
 		.positionsOptions label {
@@ -31,9 +26,10 @@
 		}
 
 		.sportSelect {
+			display: none; 
+
 			label {
 				display: flex;
-				flex-direction: column;
 			}
 			
 			.sports-header {
@@ -46,6 +42,7 @@
 			.filterPositions {
 				display: none;
 			}
+
 			.filterPositions label {
 				flex-direction: row;
 			} 
@@ -55,7 +52,7 @@
 		}
 
 		.yearsSelect {
-			display: flex;
+			display: none;
 			
 			flex-wrap: wrap;
 			max-width: 180px;

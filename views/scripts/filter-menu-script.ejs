@@ -26,7 +26,7 @@ if (allUnchecked) {
 	})	
 }
 	
-	function getSelectedAthletes(checkboxType) {
+function getSelectedAthletes(checkboxType) {
 	const selectedItems = [];
 
 	checkboxType.forEach( function(checkbox) {
@@ -116,50 +116,15 @@ $positions.forEach( function(position) {
 })
 // - - - - TOGGLE FILTERS ON/OFF - - - - - - - - 
 const $sportsFilter = document.getElementById('sportsFilter');
-const $sportsOptions = document.querySelector('.sportsOptions');
+const $sportSelect = document.querySelector('.sportSelect');
 
 const $yearsFilter = document.getElementById('yearsFilter');
-const $yearsOptions = document.querySelector('.yearsOptions');
+const $yearsSelect = document.querySelector('.yearsSelect');
 
 let sportValue = null;
-
-const $filterBasketball = document.querySelector('.sportInput[data-filter="basketball"]');
-const $positionsBasketball = document.querySelector('.filterPositions[data-filter="basketball"]');
-
-
-const $filterSport = document.querySelectorAll(`.sportInput`);
-const $sportPosition = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
-
 const $sportInputs = document.querySelectorAll('.sportInput');
-
-$sportInputs.forEach( function(sport) {
-	const sportValue = sport.value;
-	const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
-
-	sport.addEventListener('change', function() {
-		togglePositionFilter(sport, positionsValue);
-	})
-})
-
-$sportInputs.forEach(function (sport) {
-  sport.addEventListener('change', function() {
-  	if(sport.checked) {
-  		sportValue = sport.value;
-  		console.log(sportValue);
-  	}
-  })
-});
-
-
-
+console.log($sportInputs)
 function toggleFilters(filterType, element) {
-	if (filterType.checked) {
-		element.classList.remove('hidden');
-	} else {
-		element.classList.add('hidden');
-	}
-}
-function togglePositionFilter(filterType, element) {
 	if (filterType.checked) {
 		element.style.display = 'block';
 	} else {
@@ -167,16 +132,21 @@ function togglePositionFilter(filterType, element) {
 	}
 }
 
+$sportInputs.forEach( function(sport) {
+	const sportValue = sport.value;
+	const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
+
+	sport.addEventListener('change', function() {
+		toggleFilters(sport, positionsValue);
+	})
+})
+
 $sportsFilter.addEventListener('change', function() {
-	toggleFilters($sportsFilter, $sportsOptions);
+	toggleFilters($sportsFilter, $sportSelect);
 })
 
 $yearsFilter.addEventListener('change', function() {
-	toggleFilters($yearsFilter, $yearsOptions);
-})
-
-$filterBasketball.addEventListener('change', function() {
-	togglePositionFilter($filterBasketball, $positionsBasketball)
+	toggleFilters($yearsFilter, $yearsSelect);
 })
 
 // - - - - SELECT/DESELECT ALL SPORTS - - - - - - - - 
