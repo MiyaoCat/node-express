@@ -27,11 +27,15 @@
 
 		.sportSelect {
 			display: none; 
+			flex-direction: column;
 
 			label {
 				display: flex;
+				flex-direction: column;
 			}
-			
+			.selectAll {
+				flex-direction: row;
+			}
 			.sports-header {
 				display: flex;
 			}
@@ -59,6 +63,10 @@
 
 			label {
 				max-width: fit-content;
+			}
+
+			.selectAll {
+				min-width: 100%;
 			}
 		}
 	}

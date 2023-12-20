@@ -279,9 +279,14 @@ button {
   }
   .filter-menu .sportSelect {
     display: none;
+    flex-direction: column;
   }
   .filter-menu .sportSelect label {
     display: flex;
+    flex-direction: column;
+  }
+  .filter-menu .sportSelect .selectAll {
+    flex-direction: row;
   }
   .filter-menu .sportSelect .sports-header {
     display: flex;
@@ -302,6 +307,9 @@ button {
   }
   .filter-menu .yearsSelect label {
     max-width: fit-content;
+  }
+  .filter-menu .yearsSelect .selectAll {
+    min-width: 100%;
   }
 }
 .sort {
