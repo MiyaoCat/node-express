@@ -216,38 +216,42 @@ app.get('/athlete/:slug', function(request, response) {
 		.catch(console.error);
 })
 
-app.get('/about', function(request, response) {
-	// Define the API endpoint URL
-	const nbaApiUrl = 'https://free-nba.p.rapidapi.com/players?page=0&per_page=100';
+// app.get('/about', function(request, response) {
+// 	// Define the API endpoint URL
+// 	const nbaApiUrl = 'https://free-nba.p.rapidapi.com/players?page=0&per_page=100';
 
-	// Set the headers for the API request
-	const headers = {
-	  'X-RapidAPI-Key': 'f80c7fbedcmsh437fdc5890bce8dp15b57bjsne6ed63a690ca',
-	  'X-RapidAPI-Host': 'free-nba.p.rapidapi.com',
-	};
+// 	// Set the headers for the API request
+// 	const headers = {
+// 	  'X-RapidAPI-Key': 'f80c7fbedcmsh437fdc5890bce8dp15b57bjsne6ed63a690ca',
+// 	  'X-RapidAPI-Host': 'free-nba.p.rapidapi.com',
+// 	};
 
-  // Make the API request
-  axios.get(nbaApiUrl, { headers: headers })
-    .then( function(apiResponse) {
-      // Extract the data from the API response
-      const apiData = apiResponse.data;
+//   // Make the API request
+//   axios.get(nbaApiUrl, { headers: headers })
+//     .then( function(apiResponse) {
+//       // Extract the data from the API response
+//       const apiData = apiResponse.data;
 
-      const apiPlayerData = apiData.data.map(function(player) {
-      	return {
-      		fName: player.first_name,
-      		lName: player.last_name,
-      		id: player.id,
-      	}
-      })
-      // Render your 'api' template and pass the data as a parameter
-      response.render('about', { apiData: apiPlayerData });
-    })
+//       const apiPlayerData = apiData.data.map(function(player) {
+//       	return {
+//       		fName: player.first_name,
+//       		lName: player.last_name,
+//       		id: player.id,
+//       	}
+//       })
+//       // Render your 'api' template and pass the data as a parameter
+//       response.render('about', { apiData: apiPlayerData });
+//     })
     
-    .catch((error) => {
-      // Handle any errors here
-      console.error('API request failed:', error);
-      response.status(500).send('API request failed');
-    });	
+//     .catch((error) => {
+//       // Handle any errors here
+//       console.error('API request failed:', error);
+//       response.status(500).send('API request failed');
+//     });	
+// })
+
+app.get('/about', function(request, response) {
+	response.render('about');
 })
 
 const perPage = 25;
@@ -281,7 +285,7 @@ app.get('/api', async (req, res) => {
     res.render('api', { players: allPlayers });
   } catch (error) {
     console.error('Error:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Ughhh...error of some sort. Figure it out. Internal Server Error');
   }
 });
 

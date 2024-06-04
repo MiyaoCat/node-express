@@ -10,19 +10,21 @@
 		const year = label.getAttribute('for');
 		return year;
 	})
-		let allUnchecked = true;
-		sportsCheckboxes.forEach( function(checkbox) {
-			if (checkbox.checked) {
-				allUnchecked = false;
-				return;
-			} 
-		})
 
-		if (allUnchecked) {
-			yearsLabel.forEach( function(label) {
-				label.style.display = 'block';
-			})	
-		}
+	let allUnchecked = true;
+	
+	sportsCheckboxes.forEach( function(checkbox) {
+		if (checkbox.checked) {
+			allUnchecked = false;
+			return;
+		} 
+	})
+
+	if (allUnchecked) {
+		yearsLabel.forEach( function(label) {
+			label.style.display = 'block';
+		})	
+	}
  	function getSelectedAthletes(checkboxType) {
 		const selectedItems = [];
 
