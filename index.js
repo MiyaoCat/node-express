@@ -135,7 +135,6 @@ app.get('/athletes', function(request, response) {
 					slug: item.fields.slug,
 				};
 			});
-			// console.log("ATHLETE: ", athleteData);
 			response.render('athletes', { athletes: athleteData })
 		})
 		.catch(console.error)
@@ -281,7 +280,6 @@ app.get('/api', async (req, res) => {
 
       allPlayers.push(...playerData);
     }
-    // console.log(playerData)
     res.render('api', { players: allPlayers });
   } catch (error) {
     console.error('Error:', error.message);

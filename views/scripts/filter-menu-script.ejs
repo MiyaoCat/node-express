@@ -169,18 +169,18 @@ function updateCardVisibility() {
 
  $allSports.addEventListener('change', function () {
       if ($allSports.checked) {
-          // If 'AllSports' is checked, check all individual sports checkboxes
-          sportsCheckboxes.forEach(function (checkbox) {
-              checkbox.checked = true;
-              allSportsText.innerText = 'Deselect All';
-          });
+        // If 'AllSports' is checked, check all individual sports checkboxes
+        sportsCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = true;
+            allSportsText.innerText = 'Deselect All';
+        });
       } else {
-          // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
-          sportsCheckboxes.forEach(function (checkbox) {
-              checkbox.checked = false;
-              allSportsText.innerText = 'Select All';
-          });
-      }
+        // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
+        sportsCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+            allSportsText.innerText = 'Select All';
+        });
+    	}
 
       // Update the logic for showing/hiding cards
       updateCardVisibility();

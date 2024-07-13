@@ -3,17 +3,20 @@
 const collegeSeasons = athletes.map(function(athlete) {
 	return athlete.collegeSeasons;
 })
+
 const colSeasonsFlat = collegeSeasons.flat();
 const uniqueColSeasons = colSeasonsFlat.filter( function(item, i, colSeasonsFlat) {
 	return i == colSeasonsFlat.indexOf(item);
 })
 const colSeasonsSorted = uniqueColSeasons.sort();
 const colSeasonsSortedRev = colSeasonsSorted.reverse();
+console.log('College season started: ', colSeasonsSorted);
 
 // GET UNIQUE SPORTS
 const sports = athletes.map( function(athlete) {
 	return athlete.sport;
 });
+
 const sportsFlat = sports.flat();
 const uniqueSport = sportsFlat.filter( function(item, i, sports) {
 	return i == sports.indexOf(item);
@@ -88,8 +91,6 @@ function capFirstLetter(string) {
 			<input type="checkbox" id="sportsFilter">
 
 			<div class="sportsOptions">
-				
-
 				<div class="sportSelect">
 					<label for="allSports" class="selectAll">
 						<input type="checkbox" id="allSports">
