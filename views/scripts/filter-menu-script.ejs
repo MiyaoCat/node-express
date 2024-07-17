@@ -186,32 +186,26 @@ function updateCardVisibility() {
       updateCardVisibility();
  });
 
-// - - - - SELECT/DESELECT ALL POSITIONS - - - - - - - -     
-//If sport is checked, check all individual positions within that sport
-//If sport is unchecked, uncheck all individual positions within that sport
-
-
 // - - - - SELECT/DESELECT ALL YEARS - - - - - - - - 
 const $allYears = document.getElementById('allYears');
 const selectAllYears = document.querySelector('label[for="allYears"] p');
-const yearsCheckboxes = document.querySelectorAll('.yearSelect input[type="checkbox"]');
+const yearsCheckboxes = document.querySelectorAll('.yearsSelect input[type="checkbox"]');
 
-// $allYears.addEventListener('change', function() {
-// 	if ($allYears.checked == false) {
-// 		yearsCheckboxes.forEach( function(checkbox) {
-// 			checkbox.checked = false;
+yearsCheckboxes.forEach(function (checkbox) {
+	checkbox.checked = true;
+})
 
-// 			cards.forEach( function(card) {
-// 				card.style.display = 'none';
-// 			});
-// 			selectAllYears.innerText = 'Select All';
-// 		})
-// 	} else {
-// 		yearsCheckboxes.forEach( function(checkbox) {
-// 			checkbox.checked = true;
-// 			selectAllYears.innerText = 'Deselect All';
-// 		})
-// 	}
-// })
-
+$allYears.addEventListener('change', function() {
+	if ($allYears.checked) {
+		yearsCheckboxes.forEach(function (checkbox) {
+			checkbox.checked = true;
+			selectAllYears.innerText = 'Deselect All';
+		});
+	} else {
+		yearsCheckboxes.forEach(function (checkbox) {
+			checkbox.checked = false;
+			selectAllYears.innerText = 'Select All';
+		})
+	}
+})
 </script>
