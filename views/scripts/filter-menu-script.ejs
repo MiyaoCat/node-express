@@ -151,7 +151,7 @@ $yearsFilter.addEventListener('change', function() {
 
 // - - - - SELECT/DESELECT ALL SPORTS - - - - - - - - 
 const $allSports = document.getElementById('allSports');
-const allSportsText = document.querySelector('label[for="allSports"] p');
+const allSportsText = document.querySelector('.SportsLabelText');
 
 // Update card visibility based on the state of checkboxes
 function updateCardVisibility() {
@@ -162,10 +162,10 @@ function updateCardVisibility() {
         card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
     });
 }
-  // Ensure all individual sports checkboxes are unchecked initially
+  // Ensure all individual sports checkboxes are checked initially
   sportsCheckboxes.forEach(function (checkbox) {
-      checkbox.checked = false;
- });
+      checkbox.checked = true;
+ 	});
 
  $allSports.addEventListener('change', function () {
       if ($allSports.checked) {

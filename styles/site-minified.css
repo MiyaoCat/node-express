@@ -295,7 +295,6 @@ button {
     display: flex;
   }
   .filter-menu .sportSelect .filterPositions {
-    display: none;
     flex-direction: column;
   }
   .filter-menu .sportSelect .filterPositions label {
