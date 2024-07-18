@@ -156,35 +156,44 @@ const allSportsText = document.querySelector('.SportsLabelText');
 // Update card visibility based on the state of checkboxes
 function updateCardVisibility() {
     const selectedSports = getSelectedAthletes(sportsCheckboxes);
+    const selectedYears = getSelectedAthletes(yearsCheckboxes);
 
     $cards.forEach(function (card) {
         const cardSport = card.getAttribute('data-sport');
+
+        const cardYears = card.getAttribute('data-year');
+        const cardYearsArray = cardYears.split(',');
+        const displayCard = cardYearsArray.some(function(year) {
+        	return selectedYears.includes(year);
+        });
+
         card.style.display = selectedSports.includes(cardSport) ? 'block' : 'none';
+        card.style.display = displayCard ? 'block' : 'none';
     });
 }
-  // Ensure all individual sports checkboxes are checked initially
-  sportsCheckboxes.forEach(function (checkbox) {
-      checkbox.checked = true;
- 	});
 
- $allSports.addEventListener('change', function () {
-      if ($allSports.checked) {
-        // If 'AllSports' is checked, check all individual sports checkboxes
-        sportsCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = true;
-            allSportsText.innerText = 'Deselect All';
-        });
-      } else {
-        // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
-        sportsCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-            allSportsText.innerText = 'Select All';
-        });
-    	}
+// Ensure all individual sports checkboxes are checked initially
+sportsCheckboxes.forEach(function (checkbox) {
+  checkbox.checked = true;
+});
 
-      // Update the logic for showing/hiding cards
-      updateCardVisibility();
- });
+$allSports.addEventListener('change', function () {
+  if ($allSports.checked) {
+    // If 'AllSports' is checked, check all individual sports checkboxes
+    sportsCheckboxes.forEach(function (checkbox) {
+        checkbox.checked = true;
+        allSportsText.innerText = 'Deselect All';
+    });
+  } else {
+    // If 'AllSports' is unchecked, uncheck all individual sports checkboxes
+    sportsCheckboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+        allSportsText.innerText = 'Select All';
+    });
+	}
+  // Update the logic for showing/hiding cards
+  updateCardVisibility();
+});
 
 // - - - - SELECT/DESELECT ALL YEARS - - - - - - - - 
 const $allYears = document.getElementById('allYears');
@@ -205,7 +214,9 @@ $allYears.addEventListener('change', function() {
 		yearsCheckboxes.forEach(function (checkbox) {
 			checkbox.checked = false;
 			selectAllYears.innerText = 'Select All';
-		})
+		});
 	}
+
+	updateCardVisibility();
 })
 </script>
