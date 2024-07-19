@@ -134,28 +134,13 @@ function toggleFilters(filterType, element) {
 		element.style.display = 'none';
 	}
 }
-// const sportInputs = document.querySelectorAll('.sportInput');
-
-// sportInputs.forEach(function (sportInput) {
-//   sportInput.addEventListener('change', function () {
-//     // Get the sport type from the data-filter attribute
-//     const sportType = sportInput.getAttribute('data-filter');
-    
-//     // Select the corresponding filterPositions container
-//     const filterPositions = document.querySelectorAll(`.filterPositions[data-filter="${sportType}"] input[type="checkbox"]`);
-
-//       // Toggle the checked state of all checkboxes inside the filterPositions container
-//       filterPositions.forEach(function (positionCheckbox) {
-//           positionCheckbox.checked = sportInput.checked;
-//       });
-//     });
-// });
 
 $sportsInput.forEach( function(sport) {
 	const sportValue = sport.value;
-	const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
+	
 
 	sport.addEventListener('change', function() {
+		const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
 		toggleFilters(sport, positionsValue);
 
 		const sportType = sport.getAttribute('data-filter');
