@@ -99,6 +99,69 @@ function capFirstLetter(string) {
 					</label>
 
 					<% sportsSorted.forEach( function(sport) { %>	
+
+
+
+						<% if (sport === 'football') { %>
+								<label class="<%=sport%>">
+									<div class="sports-header">
+										<input 								
+											type="checkbox" 
+											class="sportInput"
+											data-filter="<%=sport%>"
+											value="<%=sport%>"
+										/>
+										
+										<p class="normal-voice">
+											<%=capFirstLetter(sport)%> (<%=sportsCount[sport]%>)
+										</p>
+									</div>
+
+									<div class="filterPositions" data-filter="<%=sport%>">
+										<p class="normal-voice">Offense</p>
+										<% positionBySport(sport).forEach( function(position) { %>										
+											<% if ( position === 'Quarterback' || position == 'Running Back' || position == 'Offensive Lineman' || position == 'Tight End' || position == 'Wide Receiver') { %>
+												<label for="<%=position%>" data-filter='position'>
+
+													<input 							
+														type="checkbox"
+														id="<%=position%>"
+														data-filter="<%=position%>"
+													>
+													
+													<p class="normal-voice">
+														<%=position%> (<%=positionsCount[position]%>)
+													</p>
+												</label>
+											<% } %>	
+										<% });%>
+									</div>
+
+									<div class="filterPositions" data-filter="<%=sport%>">
+										<p class="normal-voice">Defense</p>
+										<% positionBySport(sport).forEach( function(position) { %>										
+											<% if ( position === 'Linebacker' || position == 'Defensive Back' || position == 'Defensive Lineman') { %>
+												<label for="<%=position%>" data-filter='position'>
+
+													<input 							
+														type="checkbox"
+														id="<%=position%>"
+														data-filter="<%=position%>"
+													>
+													
+													<p class="normal-voice">
+														<%=position%> (<%=positionsCount[position]%>)
+													</p>
+												</label>
+											<% } %>	
+										<% });%>
+									</div>
+
+								</label>
+						<% } else { %>
+
+
+
 						<label class="<%=sport%>">
 							<div class="sports-header">
 								<input 								
@@ -116,6 +179,7 @@ function capFirstLetter(string) {
 							<div class="filterPositions" data-filter="<%=sport%>">
 								<% positionBySport(sport).forEach( function(position) { %>
 									<label for="<%=position%>" data-filter='position'>
+
 										<input 							
 											type="checkbox"
 											id="<%=position%>"
@@ -130,6 +194,7 @@ function capFirstLetter(string) {
 							</div>
 								
 						</label>
+						<% } %>
 					<% });%>
 				</div>
 
