@@ -138,7 +138,11 @@ function capFirstLetter(string) {
 									</div>
 
 									<div class="filterPositions" data-filter="<%=sport%>">
-										<p class="normal-voice">Defense</p>
+										<label for="defense">Defense</label>
+										<input 
+											type="checkbox"
+											id="defense"
+										>
 										<% positionBySport(sport).forEach( function(position) { %>										
 											<% if ( position === 'Linebacker' || position == 'Defensive Back' || position == 'Defensive Lineman') { %>
 												<label for="<%=position%>" data-filter='position'>

@@ -127,6 +127,7 @@ const $sportsInput = document.querySelectorAll('.sportInput');
 
 // const $sportInput = document.getElementsByClassName('sportInput');
 
+// MY FUNCTION
 function toggleFilters(filterType, element) {
 	if (filterType.checked) {
 		element.style.display = 'flex';
@@ -135,13 +136,26 @@ function toggleFilters(filterType, element) {
 	}
 }
 
+//CHAT GPT
+function toggleSportsFilters(sport, positionsValue) {
+    const filterPositions = positionsValue.querySelectorAll('input[type="checkbox"]');
+    filterPositions.forEach(function(positionCheckbox) {
+        positionCheckbox.checked = sport.checked;
+    });
+}
+
 $sportsInput.forEach( function(sport) {
 	const sportValue = sport.value;
 	
+	const positionsValue = document.querySelectorAll(`.filterPositions[data-filter="${sportValue}"]`); // Update to querySelectorAll to get both offense and defense
 
 	sport.addEventListener('change', function() {
-		const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
-		toggleFilters(sport, positionsValue);
+		// const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
+
+		positionsValue.forEach( function(positions) {
+			toggleSportsFilters(sport, positions);
+		})
+		// toggleFilters(sport, positionsValue);
 
 		const sportType = sport.getAttribute('data-filter');
 
