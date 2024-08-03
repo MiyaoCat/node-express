@@ -39,12 +39,6 @@ function getSelectedAthletes(checkboxType) {
 
 const allYears = [];
 
-const $filterPositions = document.querySelectorAll('.filterPositions label');
-
-$filterPositions.forEach(function (position) {
-		// position.style.display = 'none';
-})
-
 sportsCheckboxes.forEach( function(checkbox) {
 	checkbox.addEventListener('change', function() {
 		const selectedSports = getSelectedAthletes(sportsCheckboxes);
@@ -153,7 +147,7 @@ $sportsInput.forEach( function(sport) {
 		// const positionsValue = document.querySelector(`.filterPositions[data-filter="${sportValue}"]`);
 
 		positionsValue.forEach( function(positions) {
-			toggleSportsFilters(sport, positions);
+			toggleFilters(sport, positions);
 		})
 		// toggleFilters(sport, positionsValue);
 
