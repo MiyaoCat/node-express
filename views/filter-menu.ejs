@@ -118,31 +118,33 @@ function capFirstLetter(string) {
 									</div>
 
 									<div class="filterPositions" data-filter="<%=sport%>">
-										<p class="normal-voice">Offense</p>
-										<% positionBySport(sport).forEach( function(position) { %>										
-											<% if ( position === 'Quarterback' || position == 'Running Back' || position == 'Offensive Lineman' || position == 'Tight End' || position == 'Wide Receiver') { %>
-												<label for="<%=position%>" data-filter='position'>
+										<label for="offense">
+											<input 
+												type="checkbox"
+												data-filter="offense"
+											>
+											<p class="normal-voice">Offense</p>
+											<% positionBySport(sport).forEach( function(position) { %>										
+												<% if ( position === 'Quarterback' || position == 'Running Back' || position == 'Offensive Lineman' || position == 'Tight End' || position == 'Wide Receiver') { %>
+													<label for="<%=position%>" data-filter='position'>
 
-													<input 							
-														type="checkbox"
-														id="<%=position%>"
-														data-filter="<%=position%>"
-													>
-													
-													<p class="normal-voice">
-														<%=position%> (<%=positionsCount[position]%>)
-													</p>
-												</label>
-											<% } %>	
-										<% });%>
+														<input 							
+															type="checkbox"
+															id="<%=position%>"
+															data-filter="<%=position%>"
+														>
+														
+														<p class="normal-voice">
+															<%=position%> (<%=positionsCount[position]%>)
+														</p>
+													</label>
+												<% } %>	
+											<% });%>
+										</label>
 									</div>
 
 									<div class="filterPositions" data-filter="<%=sport%>">
-										<label for="defense">Defense</label>
-										<input 
-											type="checkbox"
-											id="defense"
-										>
+
 										<% positionBySport(sport).forEach( function(position) { %>										
 											<% if ( position === 'Linebacker' || position == 'Defensive Back' || position == 'Defensive Lineman') { %>
 												<label for="<%=position%>" data-filter='position'>

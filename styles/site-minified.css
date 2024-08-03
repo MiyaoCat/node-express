@@ -270,7 +270,7 @@ button {
   }
   .filter-menu .sportsOptions label,
   .filter-menu .yearsOptions label,
-  .filter-menu .positionsOptions label {
+  .filter-menu .positionsOptions label .offense label {
     display: flex;
     margin: 5px;
     padding: 5px 0;
