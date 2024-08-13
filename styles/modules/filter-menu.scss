@@ -55,6 +55,10 @@
 			// .filterPositions.hidden {
  			//    visibility: visible;
 			// }
+
+			.filterPositions label[for="offense"] {
+				// flex-direction: column;
+			}
 		}
 
 		.yearsSelect {

@@ -72,12 +72,18 @@ const countEachSport = sportsFlat.forEach(function (sport) {
 
 const athleteTotal = sports.flat().length;
 
+//COUNT OFFENSIVE FOOTBALL PLAYERS
+const offenseCount = {};
+//Look at the sports list
+// if sport === football then get count of football players
+// AND if position equals Offensive Lineman, QB, TE, RB, WR etc
+// count the total number of players in that position
+
 //CAPITALIZE FIRST LETTER OF EACH SPORT
 function capFirstLetter(string) {
  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-//COUNT PLAYERS IN EACH POSITION
 
 %>
 
@@ -120,10 +126,14 @@ function capFirstLetter(string) {
 									<div class="filterPositions" data-filter="<%=sport%>">
 										<label for="offense">
 											<input 
+												id="offense"
 												type="checkbox"
 												data-filter="offense"
 											>
+
 											<p class="normal-voice">Offense</p>
+										</label>	
+											
 											<% positionBySport(sport).forEach( function(position) { %>										
 												<% if ( position === 'Quarterback' || position == 'Running Back' || position == 'Offensive Lineman' || position == 'Tight End' || position == 'Wide Receiver') { %>
 													<label for="<%=position%>" data-filter='position'>
@@ -140,7 +150,7 @@ function capFirstLetter(string) {
 													</label>
 												<% } %>	
 											<% });%>
-										</label>
+										
 									</div>
 
 									<div class="filterPositions" data-filter="<%=sport%>">
