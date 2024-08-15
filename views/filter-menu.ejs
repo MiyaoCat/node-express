@@ -106,8 +106,6 @@ function capFirstLetter(string) {
 
 					<% sportsSorted.forEach( function(sport) { %>	
 
-
-
 						<% if (sport === 'football') { %>
 								<label class="<%=sport%>">
 									<div class="sports-header">
@@ -136,18 +134,19 @@ function capFirstLetter(string) {
 											
 											<% positionBySport(sport).forEach( function(position) { %>										
 												<% if ( position === 'Quarterback' || position == 'Running Back' || position == 'Offensive Lineman' || position == 'Tight End' || position == 'Wide Receiver') { %>
-													<label for="<%=position%>" data-filter='position'>
 
-														<input 							
-															type="checkbox"
-															id="<%=position%>"
-															data-filter="<%=position%>"
-														>
+														<label for="<%=position%>" data-filter='position' class='offensivePositions'>
+
+															<input 							
+																type="checkbox"
+																id="<%=position%>"
+																data-filter="<%=position%>"
+															>
 														
-														<p class="normal-voice">
-															<%=position%> (<%=positionsCount[position]%>)
-														</p>
-													</label>
+															<p class="normal-voice">
+																<%=position%> (<%=positionsCount[position]%>)
+															</p>
+														</label>
 												<% } %>	
 											<% });%>
 										
@@ -157,7 +156,7 @@ function capFirstLetter(string) {
 
 										<% positionBySport(sport).forEach( function(position) { %>										
 											<% if ( position === 'Linebacker' || position == 'Defensive Back' || position == 'Defensive Lineman') { %>
-												<label for="<%=position%>" data-filter='position'>
+												<label for="<%=position%>" data-filter='position' >
 
 													<input 							
 														type="checkbox"
